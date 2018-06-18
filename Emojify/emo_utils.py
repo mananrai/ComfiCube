@@ -34,34 +34,46 @@ def softmax(x):
 def read_csv(filename = 'data/emojify_data.csv'):
     phrase = []
     emoji = []
-
+    
     with open (filename) as csvDataFile:
         csvReader = csv.reader(csvDataFile)
-
+        
         for row in csvReader:
             phrase.append(row[0])
             emoji.append(row[1])
 
-    X = np.asarray(phrase)
-    Y = np.asarray(emoji, dtype=int)
+        X = np.asarray(phrase)
+        Y = np.asarray(emoji, dtype=int)
 
     return X, Y
+
 
 def convert_to_one_hot(Y, C):
     Y = np.eye(C)[Y.reshape(-1)]
     return Y
 
 
-emoji_dictionary = {"0": "\u2764\uFE0F",    # :heart: prints a black instead of red heart depending on the font
+emoji_dictionary = {"0": ":heart:",    # :heart: prints a black instead of red heart depending on the font
                     "1": ":baseball:",
                     "2": ":smile:",
                     "3": ":disappointed:",
-                    "4": ":fork_and_knife:"}
+                    "4": ":fork_and_knife:",
+                    "5": ":simple_smile:",
+                    "6": ":open_mouth:",
+                    "7": ":anguished:",
+                    "8": ":angry:",
+                    "9": ":worried:",
+                    "10": ":satisfied:",
+                    "11": ":relieved:",
+                    "12": ":thumbsup:",
+                    "13": ":blush:",
+                    "14": ":unamused:",
+                    "15": ":tired_face:"
+}
+
 
 def label_to_emoji(label):
     """
-    Converts a label (int or string) into the corresponding emoji code (string) ready to be printed
-    """
+        Converts a label (int or string) into the corresponding emoji code (string) ready to be printed
+        """
     return emoji.emojize(emoji_dictionary[str(label)], use_aliases=True)
-              
-               

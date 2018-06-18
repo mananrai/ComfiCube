@@ -1,3 +1,0 @@
-
-
-path to images
